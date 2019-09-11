@@ -1,58 +1,29 @@
-set -x -e
+package:
+  name: libboost
+  version: 1.70.0
 
-INCLUDE_PATH="${PREFIX}/include"
-LIBRARY_PATH="${PREFIX}/lib"
+source:
+  fn: boost_1_70_0.tar.bz2
+  sha256: 430ae8354789de4fd19ee52f3b1f739e1fba576f0aded0897c3c2bc00fb38778
+  url: https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.bz2
 
-if [ "$(uname)" == "Darwin" ]; then
-    MACOSX_VERSION_MIN=10.6
-    CXXFLAGS="-mmacosx-version-min=${MACOSX_VERSION_MIN}"
-    CXXFLAGS="${CXXFLAGS} -stdlib=libstdc++"
-    LINKFLAGS="-mmacosx-version-min=${MACOSX_VERSION_MIN}"
-    LINKFLAGS="${LINKFLAGS} -stdlib=libstdc++ -L${LIBRARY_PATH}"
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python
+    - icu               [unix]
+    - bzip2             [unix]
+    - libiconv          [osx]
+    - numpy
+    - xz
+    - zlib
+  run:
+    - python
+    - numpy
 
-    ./bootstrap.sh \
-        --prefix="${PREFIX}" \
-        --with-python="${PYTHON}" \
-        --with-python-root="${PREFIX} : ${PREFIX}/include/python${PY_VER}m ${PREFIX}/include/python${PY_VER}" \
-        --with-icu="${PREFIX}" \
-        | tee bootstrap.log 2>&1
-
-    ./b2 -q \
-        variant=release \
-        address-model=64 \
-        architecture=x86 \
-        debug-symbols=off \
-        threading=multi \
-        link=static,shared \
-        toolset=clang \
-        include="${INCLUDE_PATH}" \
-        cxxflags="${CXXFLAGS}" \
-        linkflags="${LINKFLAGS}" \
-        -j"$(sysctl -n hw.ncpu)" \
-        install | tee b2.log 2>&1
-fi
-
-if [ "$(uname)" == "Linux" ]; then
-    ./bootstrap.sh \
-        --prefix="${PREFIX}" \
-        --with-python="${PYTHON}" \
-        --with-python-root="${PREFIX} : ${PREFIX}/include/python${PY_VER}m ${PREFIX}/include/python${PY_VER}" \
-        --with-icu="${PREFIX}" \
-        | tee bootstrap.log 2>&1
-
-    ./b2 -q \
-        variant=release \
-        address-model="${ARCH}" \
-        architecture=x86 \
-        debug-symbols=off \
-        threading=multi \
-        runtime-link=shared \
-        link=static,shared \
-        toolset=gcc \
-        python="${PY_VER}" \
-        include="${INCLUDE_PATH}" \
-        linkflags="-L${LIBRARY_PATH}" \
-        --layout=system \
-        -j"${CPU_COUNT}" \
-        install | tee b2.log 2>&1
-fi
+about:
+  home: http://www.boost.org/
+  license: Boost-1.0
+  summary: lib boost 1.70.0 compiled with gcc 5.4.0 under ubuntu16.04 with python 3.6
