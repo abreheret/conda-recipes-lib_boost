@@ -10,19 +10,9 @@ source:
 requirements:
   host:
     - python
-    - icu               [unix]
-    - bzip2             [unix]
-    - libiconv          [osx]
     - numpy
-    - xz
-    - zlib
 
   build:
-    - python
-    - bzip2             [unix]
-    - zlib
-
-  run:
     - python
 
 about:
