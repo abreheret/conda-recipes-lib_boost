@@ -21,4 +21,4 @@ run:
 about:
   home: http://www.boost.org/
   license: Boost-1.0
-  summary: Boost provides free peer-reviewed portable C++ source libraries with boost_python and boost_numpy
+  summary: Boost provides free peer-reviewed portable C++ source libraries. This package all boost lib with especially include boost_python and boost_numpy
