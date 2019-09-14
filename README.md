@@ -1,4 +1,4 @@
-# conda-recipes-lib_boost
+# conda-recipes-libboost
 Conda recipes to build libboost 1.70.0
 
 The result of recipes is available here : https://anaconda.org/abreheret/libboost_python
