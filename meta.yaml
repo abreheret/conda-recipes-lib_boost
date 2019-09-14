@@ -1,5 +1,5 @@
 package:
-  name: lib_boost
+  name: libboost_python
   version: 1.70.0
 
 source:
@@ -8,14 +8,17 @@ source:
   url: https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.bz2
 
 requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
   host:
     - python
     - numpy
-
-  build:
+run:
     - python
+    - numpy
 
 about:
   home: http://www.boost.org/
   license: Boost-1.0
-  summary: lib boost 1.70.0 compiled with gcc 5.4.0 under ubuntu16.04 with python 3.6
+  summary: Boost provides free peer-reviewed portable C++ source libraries with boost_python and boost_numpy
