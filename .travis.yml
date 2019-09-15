@@ -8,7 +8,7 @@ os:
 python:
   #- "2.7"
   #- "3.5"
-  #- "3.6"
+  - "3.6"
   - "3.7"
   
 install:
@@ -28,9 +28,8 @@ install:
   - anaconda config --set auto_register yes
   - conda config --set anaconda_upload yes
   - anaconda login --password ${ANACONDA_PASSWORD} --username ${ANACONDA_LOGIN}
-  
-  # - cd repice
-  # - conda-build . -c conda-forge
+  - cd repice
+  - conda-build . -c conda-forge
 
 script:
   # Your test script goes here
