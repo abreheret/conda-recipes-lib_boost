@@ -1,31 +1,42 @@
 language: python
 
-os:
-  - linux
-  - osx
-  - windows
-
-python:
-  - "2.7"
-  - "3.6"
-  - "3.7"
-
-env:
-  - VC_VERSION=msvc-14.0
-  - VC_VERSION=msvc-14.1
-  - VC_VERSION=msvc-14.2
-
 matrix:
-  exclude:
+  include:
     - os: linux
-      env: VC_VERSION=msvc-14.1 VC_VERSION=msvc-14.2
+      python:3.7 
+    - os: linux
+      python:3.6 
+    - os: linux
+      python:2.7 
     - os: osx
-      env: VC_VERSION=msvc-14.1 VC_VERSION=msvc-14.2      
+      python:3.7 
+    - os: osx
+      python:3.6 
+    - os: osx
+      python:2.7 
+    - os: windows
+      env: VC_VERSION=msvc-14.0 TRAVIS_PYTHON_VERSION=3.7
+    - os: windows
+      env: VC_VERSION=msvc-14.1 TRAVIS_PYTHON_VERSION=3.7
+    - os: windows
+      env: VC_VERSION=msvc-14.2 TRAVIS_PYTHON_VERSION=3.7
+    - os: windows
+      env: VC_VERSION=msvc-14.0 TRAVIS_PYTHON_VERSION=2.7
+    - os: windows
+      env: VC_VERSION=msvc-14.1 TRAVIS_PYTHON_VERSION=2.7
+    - os: windows
+      env: VC_VERSION=msvc-14.2 TRAVIS_PYTHON_VERSION=2.7
+    - os: windows
+      env: VC_VERSION=msvc-14.0 TRAVIS_PYTHON_VERSION=3.6
+    - os: windows
+      env: VC_VERSION=msvc-14.1 TRAVIS_PYTHON_VERSION=3.6
+    - os: windows
+      env: VC_VERSION=msvc-14.2 TRAVIS_PYTHON_VERSION=3.6
       
-  
 install:
-  - echo $VC_VERSION
+  - echo $TRAVIS_PYTHON_VERSION
   - echo $TRAVIS_OS_NAME
+  - if [ "$TRAVIS_OS_NAME" == "windows" ]; then echo $VC_VERSION fi
   #- sudo apt-get update
   #- wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
   #- bash miniconda.sh -b -p $HOME/miniconda
