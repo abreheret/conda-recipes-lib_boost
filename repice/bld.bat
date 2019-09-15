@@ -43,19 +43,18 @@
 :: WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or       ::
 :: mplied. See the License for the specific language governing           ::
 :: permissions and limitations under the License.                        ::
-
+          ::define=BOOST_ALL_NO_LIB ^
 echo ON
 
 
 call .\bootstrap.bat
 if errorlevel 1 exit 1
 
-call .\b2 install toolset=msvc-14.0 ^
+call .\b2 install toolset=%VC_VERSION% ^
           address-model=%ARCH% ^
-          variant=release ^
+          variant=debug,release ^
           threading=multi ^
           link=static,shared ^
-          define=BOOST_ALL_NO_LIB ^
           -j%CPU_COUNT% ^
           --without-mpi ^
           --layout=system ^

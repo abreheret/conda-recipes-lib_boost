@@ -2,34 +2,47 @@ language: python
 
 os:
   - linux
-#  - osx
-#  - windows
+  - osx
+  - windows
 
 python:
-  #- "2.7"
-  #- "3.5"
+  - "2.7"
   - "3.6"
   - "3.7"
+
+env:
+  - VC_VERSION=msvc-14.0
+  - VC_VERSION=msvc-14.1
+  - VC_VERSION=msvc-14.2
+
+matrix:
+  exclude:
+    - os: linux
+      env: VC_VERSION=msvc-14.1 VC_VERSION=msvc-14.2
+      
+   - os: osx
+      env: VC_VERSION=msvc-14.1 VC_VERSION=msvc-14.2      
+      
   
 install:
-  - sudo apt-get update
-  - wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - source "$HOME/miniconda/etc/profile.d/conda.sh"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  - conda info -a
-
-  # Replace dep1 dep2 ... with your dependencies
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION 
-  - conda activate test-environment
-  - conda install conda-build anaconda-client
-  - anaconda config --set auto_register yes
-  - conda config --set anaconda_upload yes
-  - anaconda login --password ${ANACONDA_PASSWORD} --username ${ANACONDA_LOGIN}
-  - cd repice
-  - conda-build . -c conda-forge
+  - echo $VC_VERSION
+  - echo $TRAVIS_OS_NAME
+  #- sudo apt-get update
+  #- wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+  #- bash miniconda.sh -b -p $HOME/miniconda
+  #- source "$HOME/miniconda/etc/profile.d/conda.sh"
+  #- hash -r
+  #- conda config --set always_yes yes --set changeps1 no
+  #- conda update -q conda
+  #- conda info -a
+  #- conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION 
+  #- conda activate test-environment
+  #- conda install conda-build anaconda-client
+  #- anaconda config --set auto_register yes
+  #- conda config --set anaconda_upload yes
+  #- anaconda login --password ${ANACONDA_PASSWORD} --username ${ANACONDA_LOGIN}
 
 script:
-  # Your test script goes here
+  #- cd repice
+  #- conda-build . -c conda-forge
+  
