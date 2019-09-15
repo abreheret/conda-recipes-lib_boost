@@ -46,7 +46,7 @@ install:
   - conda install conda-build anaconda-client
   - anaconda config --set auto_register yes
   - conda config --set anaconda_upload yes
-  - anaconda login --password ${ANACONDA_PASSWORD} --username ${ANACONDA_LOGIN} --yes
+  - yes | anaconda login --password ${ANACONDA_PASSWORD} --username ${ANACONDA_LOGIN}
 
 script:
   - cd repice  
