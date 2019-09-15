@@ -19,8 +19,7 @@ matrix:
   exclude:
     - os: linux
       env: VC_VERSION=msvc-14.1 VC_VERSION=msvc-14.2
-      
-   - os: osx
+    - os: osx
       env: VC_VERSION=msvc-14.1 VC_VERSION=msvc-14.2      
       
   
