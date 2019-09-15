@@ -1,5 +1,5 @@
 package:
-  name: libboost_python
+  name: test_libboost_python
   version: 1.70.0
 
 source:
