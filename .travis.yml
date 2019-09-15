@@ -1,37 +1,37 @@
-language: python
+language: cpp
 
 matrix:
   include:
     - os: linux
-      python: 3.7 
+      env: BUILD_TARGET=3.7
     - os: linux
-      python: 3.6 
+      env: BUILD_TARGET=3.6
     - os: linux
-      python: 2.7 
+      env: BUILD_TARGET=2.7
     - os: osx
-      env: TRAVIS_PYTHON_VERSION=3.7
+      env: BUILD_TARGET=3.7
     - os: osx
-      env: TRAVIS_PYTHON_VERSION=3.6
+      env: BUILD_TARGET=3.6
     - os: osx
-      env: TRAVIS_PYTHON_VERSION=2.7
+      env: BUILD_TARGET=2.7
 #    - os: windows
-#      env: VC_VERSION=msvc-14.0 TRAVIS_PYTHON_VERSION=3.7
+#      env: VC_VERSION=msvc-14.0 BUILD_TARGET=3.7
 #    - os: windows
-#      env: VC_VERSION=msvc-14.1 TRAVIS_PYTHON_VERSION=3.7
+#      env: VC_VERSION=msvc-14.1 BUILD_TARGET=3.7
 #    - os: windows
-#      env: VC_VERSION=msvc-14.2 TRAVIS_PYTHON_VERSION=3.7
+#      env: VC_VERSION=msvc-14.2 BUILD_TARGET=3.7
 #    - os: windows
-#      env: VC_VERSION=msvc-14.0 TRAVIS_PYTHON_VERSION=2.7
+#      env: VC_VERSION=msvc-14.0 BUILD_TARGET=2.7
 #    - os: windows
-#      env: VC_VERSION=msvc-14.1 TRAVIS_PYTHON_VERSION=2.7
+#      env: VC_VERSION=msvc-14.1 BUILD_TARGET=2.7
 #    - os: windows
-#      env: VC_VERSION=msvc-14.2 TRAVIS_PYTHON_VERSION=2.7
+#      env: VC_VERSION=msvc-14.2 BUILD_TARGET=2.7
 #    - os: windows
-#      env: VC_VERSION=msvc-14.0 TRAVIS_PYTHON_VERSION=3.6
+#      env: VC_VERSION=msvc-14.0 BUILD_TARGET=3.6
 #    - os: windows
-#      env: VC_VERSION=msvc-14.1 TRAVIS_PYTHON_VERSION=3.6
+#      env: VC_VERSION=msvc-14.1 BUILD_TARGET=3.6
 #    - os: windows
-#      env: VC_VERSION=msvc-14.2 TRAVIS_PYTHON_VERSION=3.6
+#      env: VC_VERSION=msvc-14.2 BUILD_TARGET=3.6
       
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then MINICONDA_OS=Linux; else MINICONDA_OS=MacOSX; fi
@@ -41,7 +41,7 @@ install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION 
+  - conda create -q -n test-environment python=$BUILD_TARGET 
   - conda activate test-environment
   - conda install conda-build anaconda-client
   - anaconda config --set auto_register yes
