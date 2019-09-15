@@ -9,11 +9,11 @@ matrix:
     - os: linux
       python: 2.7 
     - os: osx
-      python: 3.7 
+      env: TRAVIS_PYTHON_VERSION=3.7
     - os: osx
-      python: 3.6 
+      env: TRAVIS_PYTHON_VERSION=3.6
     - os: osx
-      python: 2.7 
+      env: TRAVIS_PYTHON_VERSION=2.7
 #    - os: windows
 #      env: VC_VERSION=msvc-14.0 TRAVIS_PYTHON_VERSION=3.7
 #    - os: windows
@@ -49,7 +49,7 @@ install:
   - anaconda login --password ${ANACONDA_PASSWORD} --username ${ANACONDA_LOGIN}
 
 script:
+  - cd repice  
+#  - conda-build . -c conda-forge
   - echo "OK"
-  #- cd repice  
-  #- conda-build . -c conda-forge
   
