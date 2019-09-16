@@ -9,10 +9,13 @@ source:
 
 build:
   features:
-    - vc{{vc}} [win]
+    - vc14 [win]
 
 requirements:
 
+  build:
+    - vc 14  # [win and py>=35]
+    
   host:
     - python
     - numpy

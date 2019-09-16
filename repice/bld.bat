@@ -55,6 +55,7 @@ call .\b2 install toolset=%VC_COMPILER% ^
           variant=debug,release ^
           threading=multi ^
           link=static,shared ^
+          python="%PY_VER%" \
           -j%CPU_COUNT% ^
           --without-mpi ^
           --layout=system ^

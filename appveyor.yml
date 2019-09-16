@@ -3,15 +3,12 @@ platform:
   - x64
 
 image: Visual Studio 2015
-#   - Visual Studio 2017
-#   - Visual Studio 2019
    
 environment:
 
   VC_COMPILER: msvc-14.0
   
   matrix:
-    - BUILD_TARGET: 2.7
     - BUILD_TARGET: 3.6
     - BUILD_TARGET: 3.7
    
