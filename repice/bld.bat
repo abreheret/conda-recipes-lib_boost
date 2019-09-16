@@ -47,14 +47,19 @@
 echo ON
 
 
-call .\bootstrap.bat
+call .\bootstrap.bat ^
+        --prefix="%PREFIX%" ^
+        --with-python="%PYTHON%" ^
+        --with-python-root="%PREFIX% : %PREFIX%/include/python%PY_VER%m %PREFIX%/include/python%PY_VER%" ^
+        --with-icu="%PREFIX%"
+
 if errorlevel 1 exit 1
 
 call .\b2 install toolset=%VC_COMPILER% ^
-          address-model=%ARCH% ^
+          address-model=64 ^
           variant=debug,release ^
           threading=multi ^
-          link=static,shared ^
+          link=static ^
           python="%PY_VER%" \
           -j%CPU_COUNT% ^
           --without-mpi ^
