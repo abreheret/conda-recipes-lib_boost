@@ -7,6 +7,9 @@ image: Visual Studio 2015
 #   - Visual Studio 2019
    
 environment:
+
+  VC_COMPILER: msvc-14.0
+  
   matrix:
     - BUILD_TARGET: 3.6
     - BUILD_TARGET: 3.7
@@ -25,6 +28,7 @@ install:
   - cmd: anaconda login --password %ANACONDA_PASSWORD% --username %ANACONDA_LOGIN%
     
 build_script:
-  - cmd: repice
+  - cmd: cd repice
+  - cmd: dir
   - cmd: conda-build . -c conda-forge
   

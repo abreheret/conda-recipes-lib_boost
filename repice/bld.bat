@@ -50,7 +50,7 @@ echo ON
 call .\bootstrap.bat
 if errorlevel 1 exit 1
 
-call .\b2 install toolset=%VC_VERSION% ^
+call .\b2 install toolset=%VC_COMPILER% ^
           address-model=%ARCH% ^
           variant=debug,release ^
           threading=multi ^
