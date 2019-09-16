@@ -23,7 +23,7 @@ install:
   - cmd: conda install conda-build anaconda-client
   - cmd: anaconda config --set auto_register yes
   - cmd: conda config --set anaconda_upload yes
-  - cmd: y | anaconda login --hostname appveyor --password %ANACONDA_PASSWORD% --username %ANACONDA_LOGIN%
+  - cmd: anaconda login --password %ANACONDA_PASSWORD% --username %ANACONDA_LOGIN% --hostname appveyor{{commitId}} 
     
 build_script:
   - cmd: cd repice
