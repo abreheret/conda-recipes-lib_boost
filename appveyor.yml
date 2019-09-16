@@ -2,24 +2,28 @@
 platform:
   - x64
 
+image: Visual Studio 2015
+#   - Visual Studio 2017
+#   - Visual Studio 2019
+   
 environment:
-  matrix:
-    - image: Visual Studio 2015
-    - image: Visual Studio 2017
-    - image: Visual Studio 2019
+   - BUILD_TARGET: 3.6
+   - BUILD_TARGET: 3.7
    
 install:
+  - cmd: set CONDA_INSTALL_LOCN=C:\tools\miniconda3
   - cmd: choco install miniconda3
+  - cmd: call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
   - cmd: conda config --set always_yes yes  --set changeps1 no --set auto_update_conda false
   - cmd: conda info -a
-  - cmd: conda create -q -n test-environment python=$BUILD_TARGET 
-  - cmd: call activate test-environment
-  - cmd: call conda install conda-build anaconda-client
-  - cmd: call anaconda config --set auto_register yes
-  - cmd: call conda config --set anaconda_upload yes
-  - cmd: call anaconda login --password %ANACONDA_PASSWORD% --username %ANACONDA_LOGIN%
+  - cmd: conda create -q -n test-environment python=%BUILD_TARGET% 
+  - cmd: activate test-environment
+  - cmd: conda install conda-build anaconda-client
+  - cmd: anaconda config --set auto_register yes
+  - cmd: conda config --set anaconda_upload yes
+  - cmd: anaconda login --password %ANACONDA_PASSWORD% --username %ANACONDA_LOGIN%
     
 build_script:
-  - cmd: call repice
-  - cmd: call conda-build . -c conda-forge
+  - cmd: repice
+  - cmd: conda-build . -c conda-forge
   
