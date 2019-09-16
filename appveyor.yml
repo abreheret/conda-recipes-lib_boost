@@ -1,48 +1,25 @@
-image: Visual Studio 2017
 
 platform:
   - x64
 
 environment:
   matrix:
-    - CONDA_RECIPE: etc/conda/boost-suite
-    - CONDA_RECIPE: etc/conda/libboost_python
-    - CONDA_RECIPE: etc/conda/pybind11-suite
+    - image: Visual Studio 2015
+    - image: Visual Studio 2017
+    - image: Visual Studio 2019
    
 install:
-  - git clone https://github.com/StatisKit/appveyor-ci.git
-  - cd appveyor-ci
-  - call before_install.bat
-  - call install.bat
+  - cmd: choco install miniconda3
+  - cmd: conda config --set always_yes yes  --set changeps1 no --set auto_update_conda false
+  - cmd: conda info -a
+  - cmd: conda create -q -n test-environment python=$BUILD_TARGET 
+  - cmd: call activate test-environment
+  - cmd: call conda install conda-build anaconda-client
+  - cmd: call anaconda config --set auto_register yes
+  - cmd: call conda config --set anaconda_upload yes
+  - cmd: call anaconda login --password %ANACONDA_PASSWORD% --username %ANACONDA_LOGIN%
     
-before_build:
-  - call before_build.bat
-
 build_script:
-  - call build_script.bat
+  - cmd: call repice
+  - cmd: call conda-build . -c conda-forge
   
-after_build:
-  - call after_build.bat
-
-deploy:
-  provider: Script
-  on:
-    branch: master
- 
-before_deploy:
-  - call before_deploy.bat
-
-deploy_script:
-  - call deploy_script.bat
-
-after_deploy:
-  - call after_deploy.bat
-
-on_success:
-  - call on_success.bat
-
-on_failure:
-  - call on_failure.bat
-
-on_finish:
-  - call on_finish.bat
