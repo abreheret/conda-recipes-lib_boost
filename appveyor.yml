@@ -11,6 +11,7 @@ environment:
   VC_COMPILER: msvc-14.0
   
   matrix:
+    - BUILD_TARGET: 2.7
     - BUILD_TARGET: 3.6
     - BUILD_TARGET: 3.7
    
@@ -25,7 +26,7 @@ install:
   - cmd: conda install conda-build anaconda-client
   - cmd: anaconda config --set auto_register yes
   - cmd: conda config --set anaconda_upload yes
-  - cmd: anaconda login --password %ANACONDA_PASSWORD% --username %ANACONDA_LOGIN%
+  - cmd: y | anaconda login --hostname appveyor --password %ANACONDA_PASSWORD% --username %ANACONDA_LOGIN%
     
 build_script:
   - cmd: cd repice

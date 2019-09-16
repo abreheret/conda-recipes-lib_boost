@@ -14,24 +14,7 @@ matrix:
       env: BUILD_TARGET=3.6
     - os: osx
       env: BUILD_TARGET=2.7
-#    - os: windows
-#      env: VC_VERSION=msvc-14.0 BUILD_TARGET=3.7
-#    - os: windows
-#      env: VC_VERSION=msvc-14.1 BUILD_TARGET=3.7
-#    - os: windows
-#      env: VC_VERSION=msvc-14.2 BUILD_TARGET=3.7
-#    - os: windows
-#      env: VC_VERSION=msvc-14.0 BUILD_TARGET=2.7
-#    - os: windows
-#      env: VC_VERSION=msvc-14.1 BUILD_TARGET=2.7
-#    - os: windows
-#      env: VC_VERSION=msvc-14.2 BUILD_TARGET=2.7
-#    - os: windows
-#      env: VC_VERSION=msvc-14.0 BUILD_TARGET=3.6
-#    - os: windows
-#      env: VC_VERSION=msvc-14.1 BUILD_TARGET=3.6
-#    - os: windows
-#      env: VC_VERSION=msvc-14.2 BUILD_TARGET=3.6
+
       
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then MINICONDA_OS=Linux; else MINICONDA_OS=MacOSX; fi
