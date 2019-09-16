@@ -7,8 +7,8 @@ image: Visual Studio 2015
 #   - Visual Studio 2019
    
 environment:
-   - BUILD_TARGET: 3.6
-   - BUILD_TARGET: 3.7
+  - BUILD_TARGET: 3.6
+  - BUILD_TARGET: 3.7
    
 install:
   - cmd: set CONDA_INSTALL_LOCN=C:\tools\miniconda3
